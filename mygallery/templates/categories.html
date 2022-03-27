@@ -1,0 +1,22 @@
+{% extends 'base.html' %} 
+{% block content %} 
+{{block super}}
+<div class="container">
+  {% for image in photos %}
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          {{image.name}}
+        </div>
+        <div class="card-body">
+          <img width="400px" src=" {{image.image.url}} " class="img-responsive" alt="one image image">
+        </div>
+        <div class="card-footer">
+          <a class="btn btn-success" href="/single_image/{{image.id}} ">More</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock%}
