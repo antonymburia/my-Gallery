@@ -4,42 +4,104 @@
 <div class="container-fluid">
     <div class="container">
         <div class="section-1">
-            <h2 class="home"><b>Welcome to My Gallery</b></h2>
-        <div class="row">
-            {%for pic in pictures %}
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                    Categories
+                </button>
+                <ul class="dropdown-menu">
+                    {% for my_catpic in category %}
 
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <img class=" img-responsive image2" width="100%" height="200px" src="{{pic.image.url}}"
-                            alt="image">
-                    </div>
-                    <div class="card-footer">
-                        {{pic.name}}
-                        <a class="btn btn-primary" href="/single_pic/{{pic.id}} " style="float: right;">More</a>
+                    <a href="/category/{{my_catpic.id}}">
+                        <button class="btn btn-primary drop">
+                            {{my_catpic.category_name}}
+                        </button>
+
+                    </a>
+
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="dropdown">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+                    Location
+                </button>
+                <ul class="dropdown-menu">
+                    {% for my_loc in location_pics %}
+
+                    <a href="/location/{{my_loc.id}}">
+                        <button class="btn btn-primary drop">
+                            {{my_loc.location_name}}
+                        </button>
+
+                    </a>
+
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="section-2">
+            <h2 class="home"><b>Welcome to My Gallery</b></h2>
+            <div class="row">
+                {%for pic in pictures %}
+
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <img class=" img-responsive image2" width="100%" height="200px" src="{{pic.image.url}}"
+                                alt="image">
+                        </div>
+                        <div class="card-footer">
+                            {{pic.name}}
+                            <a class="btn btn-primary" href="/single_pic/{{pic.id}} " style="float: right;">More</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            {%endfor%}
-        </div>
+                {%endfor%}
+            </div>
         </div>
     </div>
 </div>
 <style>
+    .section-1{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .dropdown{
+        margin-right: 2%;
+        
+    }
+    ul{
+        background-image: url('media/images/cubes-2492010_1920.jpg');
+        width: 20%;
+    }
     .container-fluid {
         background-image: url('media/images/technology-4559283_1920.jpg');
         background-size: cover;
         background-attachment: fixed;
         background-position: top center;
     }
-    .card{
-        margin-top: 4%;
-        box-shadow:rgb(31,92,196,0.4) 1px 2px 3px 4px;
+
+    .drop {
+        display: block;
+        margin: 3%;
+        width: 95%;
     }
-    .home{
+
+    .card {
+        margin-top: 4%;
+        box-shadow: rgb(31, 92, 196, 0.4) 1px 2px 3px 4px;
+    }
+
+    .home {
         color: #fff;
         padding-top: 3%;
     }
+
+    .section-1 {
+        padding-top: 2%;
+    }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 {%endblock%}
