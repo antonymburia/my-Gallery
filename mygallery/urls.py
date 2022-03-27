@@ -8,7 +8,7 @@ urlpatterns=[
     url(r'^single_pic/(\d+)',views.single_pic),
     url(r'^search/',views.search_results),
     url(r'^location/(\d+)',views.viewPics_by_location),
-    url(r'^category/(\d+)',views.viewPics_by_category)
+    url(r'^category/(\d+)',views.viewPics_by_category),
     ]
 
 
