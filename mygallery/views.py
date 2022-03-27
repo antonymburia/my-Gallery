@@ -41,3 +41,4 @@ def viewPics_by_category(request,category):
     photos =Image.view_pictures_by_category(category)
     return render (request,'categories.html',{"photos":photos})
 
+ 
