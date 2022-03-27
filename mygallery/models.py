@@ -20,9 +20,6 @@ class Image(models.Model):
     author = models.ForeignKey(User,on_delete = models.CASCADE)
 
 
-
-
-
     def save_image(self):
         self.save()
         

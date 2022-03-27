@@ -1,24 +1,24 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404
 from .models import User,Image,Category,Location
-from django.core.exceptions import DoesNotExist
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # Create your views here.
 
 def pics(request):
     category = Category.get_categories()
-    pictures = Image.all_pics()
+    pictures = Image.all_images ()
     location_pics = Location.get_location()
 
     return render(request,'images.html',{'pictures': pictures, 'category': category, 'location_pics':location_pics })
 
 def single_pic(request,id):
     try:
-        pic = Image.objects.get(id = id)
-    except DoesNotExist:
+        image = Image.objects.get(id = id)
+    except ObjectDoesNotExist:
         raise Http404()
-    return render(request,"single_image.html", {"pic":pic})
+    return render(request,"single_image.html", {"image":image})
 
 def search_results(request):
     if 'image' in request.GET and request.GET["image"]:
@@ -33,11 +33,11 @@ def search_results(request):
         return render(request,'search.html',{"message":message})
 
 def viewPics_by_location(request,location):
-    locationpic = Image.view_pictures_by_location(location)
-    return render(request,"location_pics.html",{"locationpic":locationpic})
+    locationimages = Image.view_pictures_by_location(location)
+    return render(request,"location_images.html",{"locationimages":locationimages})
 
 
 def viewPics_by_category(request,category):
     photos =Image.view_pictures_by_category(category)
-    return render (request,'category.html',{"photos":photos})
+    return render (request,'categories.html',{"photos":photos})
 
