@@ -1,56 +1,62 @@
 {% extends 'base.html' %}
 {% block content %}
 {{block.super}}
-<div class="container">
- <div class="row">
-  <div class="col-md-4">
+<div class="container-fluid">
+ <div class="container">
+  <div class="row">
+   <div class="col-md-4">
+    {% for pic in locationimages %}
+    <h1> {{pic.name}} </h1> <br>
+    <h2> {{pic.description}} </h2>
+ 
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+     View image
+    </button>
+    <a class="btn btn-success" href="/single_pic/{{pic.id}} ">visit page</a>
+    {% endfor %}
+   </div>
    {% for pic in locationimages %}
-   <h1> {{pic.name}} </h1> <br>
-   <h2> {{pic.description}} </h2>
-
-   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
-    View image
-   </button>
-   <a class="btn btn-success" href="/single_pic/{{pic.id}} ">visit page</a>
-   {% endfor %}
-  </div>
-  {% for pic in locationimages %}
-  <!-- The Modal -->
-  <div class="modal fade" id="myModal">
-   <div class="modal-dialog">
-    <div class="modal-content">
-
-     <!-- Modal Header -->
-     <div class="modal-header">
-      <h4 class="modal-title">{{pic.name}}</h4>
-      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+   <!-- The Modal -->
+   <div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+     <div class="modal-content">
+ 
+      <!-- Modal Header -->
+      <div class="modal-header">
+       <h4 class="modal-title">{{pic.name}}</h4>
+       <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+ 
+      <!-- Modal body -->
+      <div class="modal-body">
+       <img width="400px" class="img-responsive" src=" {{pic.image.url}} " alt="img">
+       <p>{{pic.description}}</p>
+       <p>category:{{pic.category}}</p>
+       <p>Location: {{pic.location}} </p>
+      </div>
+ 
+      <!-- Modal footer -->
+      <div class="modal-footer">
+       <p>{{pic.author}}</p>
+       <a href="{{ pic.image.url }}"> <input class="form-control" type="text" value="{{ pic.image.url }}" id="link"></a>
+       <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+      </div>
+ 
      </div>
-
-     <!-- Modal body -->
-     <div class="modal-body">
-      <img width="400px" class="img-responsive" src=" {{pic.image.url}} " alt="img">
-      <p>{{pic.description}}</p>
-      <p>category:{{pic.category}}</p>
-      <p>Location: {{pic.location}} </p>
-     </div>
-
-     <!-- Modal footer -->
-     <div class="modal-footer">
-      <p>{{pic.author}}</p>
-      <a href="{{ pic.image.url }}"> <input class="form-control" type="text" value="{{ pic.image.url }}"
-        id="link"></a>
-      <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-     </div>
-
     </div>
    </div>
+   {% endfor %}
   </div>
-  {% endfor %}
+ </div>
  </div>
 </div>
-</div>
 <style>
-
+ .container{
+  background-image: url('media/images/technology-4559283_1920.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: top center;
+ }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
