@@ -26,6 +26,9 @@ As a user
 * see different posted photos
 * click on photos to copy link
 
+## Screenshot
+<img src="media/images/Screenshot from 2022-03-28 11-10-41.png" alt="">
+
 
 
 
